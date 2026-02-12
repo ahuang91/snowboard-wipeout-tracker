@@ -25,6 +25,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [showDialog, setShowDialog] = useState(false);
   const [choices, setChoices] = useState<number[]>([]);
+  const [wrongChoice, setWrongChoice] = useState<number | null>(null);
 
   const fetchDays = useCallback(async () => {
     try {
@@ -43,13 +44,18 @@ export default function Home() {
   }, [fetchDays]);
 
   const openDialog = () => {
+    setWrongChoice(null);
     setChoices(generateChoices());
     setShowDialog(true);
   };
 
   const handleChoice = async (n: number) => {
+    if (n !== 13) {
+      setWrongChoice(n);
+      setTimeout(() => setShowDialog(false), 800);
+      return;
+    }
     setShowDialog(false);
-    if (n !== 13) return;
     try {
       const res = await fetch("/api/incident", { method: "POST" });
       const data = await res.json();
@@ -93,7 +99,7 @@ export default function Home() {
               {choices.map((n) => (
                 <button
                   key={n}
-                  className={styles.choiceButton}
+                  className={`${styles.choiceButton} ${wrongChoice === n ? styles.choiceWrong : ""}`}
                   onClick={() => handleChoice(n)}
                 >
                   {n}

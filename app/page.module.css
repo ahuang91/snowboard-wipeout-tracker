@@ -104,3 +104,9 @@
   background: #e2e8f0;
   border-color: #cbd5e0;
 }
+
+.choiceWrong {
+  background: #fed7d7;
+  border-color: #e53e3e;
+  color: #e53e3e;
+}
