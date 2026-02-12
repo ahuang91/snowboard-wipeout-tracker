@@ -56,3 +56,51 @@
 .resetButton:active {
   transform: scale(0.97);
 }
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.dialog {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.dialogPrompt {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 1.5rem;
+}
+
+.choiceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.choiceButton {
+  background: #edf2f7;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.choiceButton:hover {
+  background: #e2e8f0;
+  border-color: #cbd5e0;
+}
