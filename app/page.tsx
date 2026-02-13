@@ -5,6 +5,15 @@ import { getImageForDays } from "@/lib/images";
 import type { WipeoutEntry, RunDifficulty } from "@/lib/types";
 import styles from "./page.module.css";
 
+const RESORTS = [
+  "Arapahoe Basin",
+  "Copper Mountain",
+  "Crested Butte Mountain Resort",
+  "Keystone Resort",
+  "Steamboat Resort",
+  "Winter Park",
+];
+
 const DIFFICULTY_LABELS: Record<RunDifficulty, string> = {
   green: "Green Circle",
   blue: "Blue Square",
@@ -204,10 +213,16 @@ export default function Home() {
             <label className={styles.fieldLabel}>Resort</label>
             <input
               className={styles.input}
+              list="resort-options"
               value={formResort}
               onChange={(e) => setFormResort(e.target.value)}
-              placeholder="e.g. Whistler Blackcomb"
+              placeholder="Start typing to search..."
             />
+            <datalist id="resort-options">
+              {RESORTS.map((r) => (
+                <option key={r} value={r} />
+              ))}
+            </datalist>
 
             <label className={styles.fieldLabel}>Run</label>
             <input
